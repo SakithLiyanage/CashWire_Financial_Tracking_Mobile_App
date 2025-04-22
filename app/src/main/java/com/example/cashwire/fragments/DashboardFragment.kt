@@ -36,8 +36,8 @@ class DashboardFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
-            currentDateTime = it.getString("CURRENT_DATETIME", "2025-04-22 07:25:04") // Updated timestamp
-            currentUser = it.getString("CURRENT_USER", "SakithLiyanageNow") // Updated user login
+            currentDateTime = it.getString("CURRENT_DATETIME", "2025-04-22 11:25:29") // Updated timestamp
+            currentUser = it.getString("CURRENT_USER", "SakithLiyanage") // Updated user login
         }
     }
 
@@ -88,11 +88,11 @@ class DashboardFragment : Fragment() {
     }
 
     /**
-     * Update the greeting based on time of day and user's first name
+     * Update the greeting based on time of day and user's full name
      */
     private fun updateGreeting() {
-        // Get user's first name
-        val firstName = currentUser?.split(" ")?.firstOrNull() ?: "User"
+        // Use the full name instead of just the first name
+        val userName = currentUser ?: "User"
 
         // Set greeting based on time of day
         val greeting = when (Calendar.getInstance().get(Calendar.HOUR_OF_DAY)) {
@@ -101,7 +101,7 @@ class DashboardFragment : Fragment() {
             else -> "Good evening"
         }
 
-        binding.tvGreeting.text = "$greeting, $firstName!"
+        binding.tvGreeting.text = "$greeting, $userName!"
 
         // Set current date
         val today = SimpleDateFormat("EEEE, MMMM d", Locale.getDefault()).format(Date())

@@ -146,8 +146,9 @@
                         android:hint="Enter amount"
                         android:inputType="numberDecimal"
                         android:padding="16dp"
-                        android:textSize="18sp"
-                        android:textColorHint="#B3B3B3" />
+                        android:textColor="@color/black"
+                        android:textColorHint="#B3B3B3"
+                        android:textSize="18sp" />
                 </com.google.android.material.textfield.TextInputLayout>
             </LinearLayout>
 
@@ -182,8 +183,9 @@
                         android:hint="Enter transaction title"
                         android:inputType="text"
                         android:padding="16dp"
-                        android:textSize="16sp"
-                        android:textColorHint="#B3B3B3" />
+                        android:textColor="@color/black"
+                        android:textColorHint="#B3B3B3"
+                        android:textSize="16sp" />
                 </com.google.android.material.textfield.TextInputLayout>
             </LinearLayout>
 
@@ -349,12 +351,13 @@
                         android:layout_width="match_parent"
                         android:layout_height="120dp"
                         android:background="@drawable/bg_edit_text_rounded"
+                        android:gravity="top"
                         android:hint="Add notes about this transaction"
                         android:inputType="textMultiLine"
-                        android:gravity="top"
                         android:padding="16dp"
-                        android:textSize="16sp"
-                        android:textColorHint="#B3B3B3" />
+                        android:textColor="@color/black"
+                        android:textColorHint="#B3B3B3"
+                        android:textSize="16sp" />
                 </com.google.android.material.textfield.TextInputLayout>
             </LinearLayout>
         </LinearLayout>
