@@ -1,5 +1,6 @@
 package com.example.cashwire
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
@@ -13,8 +14,8 @@ import com.example.cashwire.fragments.TransactionsFragment
 class HomeActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityHomeBinding
-    private val currentDateTime = "2025-04-22 02:45:06" // Updated to the current time
-    private val currentUserLogin = "SakithLiyanage" // Updated to current user
+    private val currentDateTime = "2025-04-22 04:50:33" // Updated timestamp
+    private val currentUserLogin = "SakithLiyanage" // User login
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -67,7 +68,7 @@ class HomeActivity : AppCompatActivity() {
     }
 
     private fun showAddTransactionDialog() {
-        // Show dialog to add a new transaction
-        // This would be implemented with a custom dialog or a separate activity
+        val intent = Intent(this, AddTransactionActivity::class.java)
+        startActivity(intent)
     }
 }

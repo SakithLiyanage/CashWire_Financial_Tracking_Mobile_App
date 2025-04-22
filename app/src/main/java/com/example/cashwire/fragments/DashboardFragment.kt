@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.example.cashwire.R
 import com.example.cashwire.databinding.FragmentDashboardBinding
+import com.example.cashwire.utils.CurrencyFormatter
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -21,8 +22,8 @@ class DashboardFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
-            currentDateTime = it.getString("CURRENT_DATETIME")
-            currentUser = it.getString("CURRENT_USER")
+            currentDateTime = it.getString("CURRENT_DATETIME", "2025-04-22 04:50:33")
+            currentUser = it.getString("CURRENT_USER", "SakithLiyanage")
         }
     }
 
@@ -49,15 +50,15 @@ class DashboardFragment : Fragment() {
     }
 
     private fun initializeDashboard() {
-        // Set balance information
-        binding.tvTotalBalance.text = "$2,356.75"
-        binding.tvIncome.text = "$2,500.00"
-        binding.tvExpenses.text = "$143.25"
+        // Set balance information with LKR currency
+        binding.tvTotalBalance.text = "LKR 2,356.75"
+        binding.tvIncome.text = "LKR 2,500.00"
+        binding.tvExpenses.text = "LKR 143.25"
 
         // Set budget progress
         binding.progressBudget.progress = 10
         binding.tvBudgetPercent.text = "9.55%"
-        binding.tvBudgetAmount.text = "$143.25 / $1,500.00"
+        binding.tvBudgetAmount.text = "LKR 143.25 / LKR 1,500.00"
     }
 
     private fun updateGreeting() {

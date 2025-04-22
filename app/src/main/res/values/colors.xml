@@ -23,6 +23,8 @@
     <color name="primary">#0F5DA2</color>
     <color name="primary_dark">#0B3E75</color>
 
+    <color name="warning_orange">#FFA000</color>
+
     <!-- UI Elements Colors -->
     <color name="background_primary">#121212</color>
     <color name="background_secondary">#1E1E1E</color>

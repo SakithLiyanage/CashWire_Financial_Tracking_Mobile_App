@@ -168,4 +168,9 @@
     <string name="goal_progress">Progress</string>
     <string name="goal_complete">Goal Complete!</string>
     <string name="goal_remaining">Remaining</string>
+
+
+    <string name="currency_symbol">LKR</string>
+    <string name="currency_code">LKR</string>
+    <string name="currency_name">Sri Lankan Rupee</string>
 </resources>
