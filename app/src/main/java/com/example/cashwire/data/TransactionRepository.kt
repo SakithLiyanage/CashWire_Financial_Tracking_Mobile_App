@@ -123,4 +123,13 @@ class TransactionRepository(context: Context) {
             e.printStackTrace()
         }
     }
+    fun saveTransactions(transactions: List<Transaction>) {
+        val json = gson.toJson(transactions)
+        sharedPreferences.edit().putString(KEY_TRANSACTIONS, json).apply()
+    }
+
+
+    fun restoreTransactions(transactions: List<Transaction>) {
+        saveTransactions(transactions)
+    }
 }
