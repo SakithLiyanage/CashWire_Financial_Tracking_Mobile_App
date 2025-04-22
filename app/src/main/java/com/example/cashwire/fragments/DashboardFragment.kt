@@ -11,6 +11,7 @@ import com.example.cashwire.R
 import com.example.cashwire.adapters.RecentTransactionsAdapter
 import com.example.cashwire.data.BudgetRepository
 import com.example.cashwire.data.TransactionRepository
+import com.example.cashwire.data.UserRepository
 import com.example.cashwire.databinding.FragmentDashboardBinding
 import com.example.cashwire.models.Transaction
 import com.example.cashwire.models.TransactionType
@@ -25,21 +26,13 @@ class DashboardFragment : Fragment() {
     private var _binding: FragmentDashboardBinding? = null
     private val binding get() = _binding!!
 
-    private var currentDateTime: String? = null
-    private var currentUser: String? = null
+    private val currentDateTime = "2025-04-22 11:41:26" // Updated timestamp
 
     private lateinit var transactionRepository: TransactionRepository
     private lateinit var budgetRepository: BudgetRepository
+    private lateinit var userRepository: UserRepository
     private lateinit var backupManager: BackupRestoreManager
     private lateinit var recentTransactionsAdapter: RecentTransactionsAdapter
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            currentDateTime = it.getString("CURRENT_DATETIME", "2025-04-22 11:25:29") // Updated timestamp
-            currentUser = it.getString("CURRENT_USER", "SakithLiyanage") // Updated user login
-        }
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
@@ -51,8 +44,10 @@ class DashboardFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        // Initialize repositories
         transactionRepository = TransactionRepository.getInstance(requireContext())
         budgetRepository = BudgetRepository.getInstance(requireContext())
+        userRepository = UserRepository.getInstance(requireContext())
         backupManager = BackupRestoreManager(requireContext())
 
         // Initialize adapters
@@ -85,14 +80,16 @@ class DashboardFragment : Fragment() {
         loadFinancialSummary()
         loadRecentTransactions()
         loadBudgetData()
+        updateGreeting() // Update greeting in case user info changed
+        updateAppInfo() // Update app info in case user info changed
     }
 
     /**
      * Update the greeting based on time of day and user's full name
      */
     private fun updateGreeting() {
-        // Use the full name instead of just the first name
-        val userName = currentUser ?: "User"
+        // Get the current logged-in user from UserRepository
+        val currentUser = userRepository.getCurrentUser().name
 
         // Set greeting based on time of day
         val greeting = when (Calendar.getInstance().get(Calendar.HOUR_OF_DAY)) {
@@ -101,7 +98,7 @@ class DashboardFragment : Fragment() {
             else -> "Good evening"
         }
 
-        binding.tvGreeting.text = "$greeting, $userName!"
+        binding.tvGreeting.text = "$greeting, $currentUser!"
 
         // Set current date
         val today = SimpleDateFormat("EEEE, MMMM d", Locale.getDefault()).format(Date())
@@ -208,6 +205,7 @@ class DashboardFragment : Fragment() {
                         loadFinancialSummary()
                         loadRecentTransactions()
                         loadBudgetData()
+                        updateGreeting() // Update greeting in case user info changed
                     } else {
                         Snackbar.make(binding.root, "Data restore failed", Snackbar.LENGTH_SHORT).show()
                     }
@@ -226,8 +224,11 @@ class DashboardFragment : Fragment() {
      * Update app information display
      */
     private fun updateAppInfo() {
+        // Get current user name from repository
+        val userName = userRepository.getCurrentUser().name
+
         binding.tvLastUpdate.text = "Last updated: $currentDateTime"
-        binding.tvUserLogin.text = "Logged in as: $currentUser"
+        binding.tvUserLogin.text = "Logged in as: $userName"
     }
 
     override fun onDestroyView() {

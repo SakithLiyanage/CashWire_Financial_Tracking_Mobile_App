@@ -79,7 +79,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:fontFamily="sans-serif-medium"
-                        android:text="රු 15,000.00"
+                        android:text="LKR 15,000.00"
                         android:textColor="@color/white"
                         android:textSize="28sp" />
 
@@ -120,8 +120,8 @@
                         <TextView
                             android:id="@+id/tvTotalSpent"
                             android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="රු 6,250.00"
+                            android:layout_height="match_parent"
+                            android:text="LKR 6,250.00"
                             android:textColor="@color/white"
                             android:textStyle="bold" />
                     </LinearLayout>
@@ -143,7 +143,7 @@
                             android:id="@+id/tvRemainingBudget"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="රු 8,750.00"
+                            android:text="LKR 8,750.00"
                             android:textColor="#8CFFA0"
                             android:textStyle="bold" />
                     </LinearLayout>
